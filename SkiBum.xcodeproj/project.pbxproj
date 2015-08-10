@@ -1,0 +1,615 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		795205F21B66A7C4001BBB6C /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795205F11B66A7C4001BBB6C /* SessionTableViewCell.swift */; };
+		795205F51B66C0CE001BBB6C /* NewSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795205F41B66C0CE001BBB6C /* NewSessionViewController.swift */; };
+		79B7BF4C1B718CF900C8E671 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B7BF4B1B718CF900C8E671 /* SettingsViewController.swift */; };
+		79B7BF511B71CE0600C8E671 /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 79B7BF4F1B71CE0600C8E671 /* SF-UI-Display-Bold.otf */; };
+		79B7BF521B71CE0600C8E671 /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 79B7BF501B71CE0600C8E671 /* SF-UI-Display-Regular.otf */; };
+		79B7BF541B72DBA500C8E671 /* SF-UI-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 79B7BF531B72DBA500C8E671 /* SF-UI-Display-Light.otf */; };
+		79CB819B1B62A0940079C1CE /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CB819A1B62A0940079C1CE /* LocationHelper.swift */; };
+		79CB819D1B62A0E90079C1CE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79CB819C1B62A0E90079C1CE /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		79CB81A11B6699DC0079C1CE /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CB81A01B6699DC0079C1CE /* Session.swift */; };
+		79FFCE511B60364F006FE789 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FFCE501B60364F006FE789 /* AppDelegate.swift */; };
+		79FFCE531B60364F006FE789 /* SessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FFCE521B60364F006FE789 /* SessionsViewController.swift */; };
+		79FFCE561B60364F006FE789 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79FFCE541B60364F006FE789 /* Main.storyboard */; };
+		79FFCE581B60364F006FE789 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79FFCE571B60364F006FE789 /* Images.xcassets */; };
+		79FFCE5B1B60364F006FE789 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FFCE591B60364F006FE789 /* LaunchScreen.xib */; };
+		79FFCE671B60364F006FE789 /* SkiBumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FFCE661B60364F006FE789 /* SkiBumTests.swift */; };
+		AB4445CAA5161733EED38A10 /* Pods_SkiBum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 425413E552BFED4494108106 /* Pods_SkiBum.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F7FAB9885397030B285A226A /* Pods_SkiBumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C270A882EFDBC25CC62C4750 /* Pods_SkiBumTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		79FFCE611B60364F006FE789 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 79FFCE431B60364E006FE789 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79FFCE4A1B60364E006FE789;
+			remoteInfo = SkiBum;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		425413E552BFED4494108106 /* Pods_SkiBum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkiBum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		795205F11B66A7C4001BBB6C /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
+		795205F41B66C0CE001BBB6C /* NewSessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSessionViewController.swift; sourceTree = "<group>"; };
+		79B7BF4B1B718CF900C8E671 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		79B7BF4F1B71CE0600C8E671 /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
+		79B7BF501B71CE0600C8E671 /* SF-UI-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Regular.otf"; sourceTree = "<group>"; };
+		79B7BF531B72DBA500C8E671 /* SF-UI-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Light.otf"; sourceTree = "<group>"; };
+		79CB819A1B62A0940079C1CE /* LocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
+		79CB819C1B62A0E90079C1CE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		79CB81A01B6699DC0079C1CE /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		79FFCE4B1B60364E006FE789 /* Mavrik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mavrik.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79FFCE4F1B60364F006FE789 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79FFCE501B60364F006FE789 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		79FFCE521B60364F006FE789 /* SessionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsViewController.swift; sourceTree = "<group>"; };
+		79FFCE551B60364F006FE789 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		79FFCE571B60364F006FE789 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		79FFCE5A1B60364F006FE789 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		79FFCE601B60364F006FE789 /* SkiBumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkiBumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		79FFCE651B60364F006FE789 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79FFCE661B60364F006FE789 /* SkiBumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkiBumTests.swift; sourceTree = "<group>"; };
+		8EBE5ED2CB4042F672D8F575 /* Pods-SkiBumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkiBumTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SkiBumTests/Pods-SkiBumTests.release.xcconfig"; sourceTree = "<group>"; };
+		A1055FE6CEA45BF364AB79C8 /* Pods-SkiBumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkiBumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SkiBumTests/Pods-SkiBumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A7620437E6F189E100CBBAAB /* Pods-SkiBum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkiBum.release.xcconfig"; path = "Pods/Target Support Files/Pods-SkiBum/Pods-SkiBum.release.xcconfig"; sourceTree = "<group>"; };
+		C0E71DA3B5F0D151B61AA29F /* Pods-SkiBum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkiBum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SkiBum/Pods-SkiBum.debug.xcconfig"; sourceTree = "<group>"; };
+		C270A882EFDBC25CC62C4750 /* Pods_SkiBumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkiBumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		79FFCE481B60364E006FE789 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79CB819D1B62A0E90079C1CE /* CoreLocation.framework in Frameworks */,
+				AB4445CAA5161733EED38A10 /* Pods_SkiBum.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79FFCE5D1B60364F006FE789 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7FAB9885397030B285A226A /* Pods_SkiBumTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4BE44E30AC40354DAE4D548D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C0E71DA3B5F0D151B61AA29F /* Pods-SkiBum.debug.xcconfig */,
+				A7620437E6F189E100CBBAAB /* Pods-SkiBum.release.xcconfig */,
+				A1055FE6CEA45BF364AB79C8 /* Pods-SkiBumTests.debug.xcconfig */,
+				8EBE5ED2CB4042F672D8F575 /* Pods-SkiBumTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		550A550D893C2A256072D99D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				425413E552BFED4494108106 /* Pods_SkiBum.framework */,
+				C270A882EFDBC25CC62C4750 /* Pods_SkiBumTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		79FFCE421B60364E006FE789 = {
+			isa = PBXGroup;
+			children = (
+				79B7BF4F1B71CE0600C8E671 /* SF-UI-Display-Bold.otf */,
+				79B7BF531B72DBA500C8E671 /* SF-UI-Display-Light.otf */,
+				79B7BF501B71CE0600C8E671 /* SF-UI-Display-Regular.otf */,
+				79CB819C1B62A0E90079C1CE /* CoreLocation.framework */,
+				79FFCE4D1B60364E006FE789 /* SkiBum */,
+				79FFCE631B60364F006FE789 /* SkiBumTests */,
+				79FFCE4C1B60364E006FE789 /* Products */,
+				4BE44E30AC40354DAE4D548D /* Pods */,
+				550A550D893C2A256072D99D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		79FFCE4C1B60364E006FE789 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				79FFCE4B1B60364E006FE789 /* Mavrik.app */,
+				79FFCE601B60364F006FE789 /* SkiBumTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		79FFCE4D1B60364E006FE789 /* SkiBum */ = {
+			isa = PBXGroup;
+			children = (
+				79FFCE501B60364F006FE789 /* AppDelegate.swift */,
+				79CB81A01B6699DC0079C1CE /* Session.swift */,
+				79FFCE521B60364F006FE789 /* SessionsViewController.swift */,
+				79CB819A1B62A0940079C1CE /* LocationHelper.swift */,
+				795205F11B66A7C4001BBB6C /* SessionTableViewCell.swift */,
+				795205F41B66C0CE001BBB6C /* NewSessionViewController.swift */,
+				79B7BF4B1B718CF900C8E671 /* SettingsViewController.swift */,
+				79FFCE541B60364F006FE789 /* Main.storyboard */,
+				79FFCE571B60364F006FE789 /* Images.xcassets */,
+				79FFCE591B60364F006FE789 /* LaunchScreen.xib */,
+				79FFCE4E1B60364F006FE789 /* Supporting Files */,
+			);
+			path = SkiBum;
+			sourceTree = "<group>";
+		};
+		79FFCE4E1B60364F006FE789 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				79FFCE4F1B60364F006FE789 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		79FFCE631B60364F006FE789 /* SkiBumTests */ = {
+			isa = PBXGroup;
+			children = (
+				79FFCE661B60364F006FE789 /* SkiBumTests.swift */,
+				79FFCE641B60364F006FE789 /* Supporting Files */,
+			);
+			path = SkiBumTests;
+			sourceTree = "<group>";
+		};
+		79FFCE641B60364F006FE789 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				79FFCE651B60364F006FE789 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		79FFCE4A1B60364E006FE789 /* SkiBum */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79FFCE6A1B60364F006FE789 /* Build configuration list for PBXNativeTarget "SkiBum" */;
+			buildPhases = (
+				BE481C66601FA6F5078DBD4C /* Check Pods Manifest.lock */,
+				79FFCE471B60364E006FE789 /* Sources */,
+				79FFCE481B60364E006FE789 /* Frameworks */,
+				79FFCE491B60364E006FE789 /* Resources */,
+				8A83DC05821CD16D6C8A2B18 /* Embed Pods Frameworks */,
+				A582A04A53711D922C137CCA /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SkiBum;
+			productName = SkiBum;
+			productReference = 79FFCE4B1B60364E006FE789 /* Mavrik.app */;
+			productType = "com.apple.product-type.application";
+		};
+		79FFCE5F1B60364F006FE789 /* SkiBumTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79FFCE6D1B60364F006FE789 /* Build configuration list for PBXNativeTarget "SkiBumTests" */;
+			buildPhases = (
+				7B376DC1ABE8A2F7DF3AC7CE /* Check Pods Manifest.lock */,
+				79FFCE5C1B60364F006FE789 /* Sources */,
+				79FFCE5D1B60364F006FE789 /* Frameworks */,
+				79FFCE5E1B60364F006FE789 /* Resources */,
+				A84797E85F5B089EB618BDE4 /* Embed Pods Frameworks */,
+				850F1BEE85FF4CCBF7BCFFBB /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				79FFCE621B60364F006FE789 /* PBXTargetDependency */,
+			);
+			name = SkiBumTests;
+			productName = SkiBumTests;
+			productReference = 79FFCE601B60364F006FE789 /* SkiBumTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		79FFCE431B60364E006FE789 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Nick Raff";
+				TargetAttributes = {
+					79FFCE4A1B60364E006FE789 = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = KH9SMR8644;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					79FFCE5F1B60364F006FE789 = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = 79FFCE4A1B60364E006FE789;
+					};
+				};
+			};
+			buildConfigurationList = 79FFCE461B60364E006FE789 /* Build configuration list for PBXProject "SkiBum" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 79FFCE421B60364E006FE789;
+			productRefGroup = 79FFCE4C1B60364E006FE789 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				79FFCE4A1B60364E006FE789 /* SkiBum */,
+				79FFCE5F1B60364F006FE789 /* SkiBumTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		79FFCE491B60364E006FE789 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79FFCE561B60364F006FE789 /* Main.storyboard in Resources */,
+				79FFCE5B1B60364F006FE789 /* LaunchScreen.xib in Resources */,
+				79B7BF541B72DBA500C8E671 /* SF-UI-Display-Light.otf in Resources */,
+				79B7BF521B71CE0600C8E671 /* SF-UI-Display-Regular.otf in Resources */,
+				79B7BF511B71CE0600C8E671 /* SF-UI-Display-Bold.otf in Resources */,
+				79FFCE581B60364F006FE789 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79FFCE5E1B60364F006FE789 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7B376DC1ABE8A2F7DF3AC7CE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		850F1BEE85FF4CCBF7BCFFBB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SkiBumTests/Pods-SkiBumTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A83DC05821CD16D6C8A2B18 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SkiBum/Pods-SkiBum-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A582A04A53711D922C137CCA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SkiBum/Pods-SkiBum-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A84797E85F5B089EB618BDE4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SkiBumTests/Pods-SkiBumTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BE481C66601FA6F5078DBD4C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		79FFCE471B60364E006FE789 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				795205F51B66C0CE001BBB6C /* NewSessionViewController.swift in Sources */,
+				79CB81A11B6699DC0079C1CE /* Session.swift in Sources */,
+				79B7BF4C1B718CF900C8E671 /* SettingsViewController.swift in Sources */,
+				79CB819B1B62A0940079C1CE /* LocationHelper.swift in Sources */,
+				795205F21B66A7C4001BBB6C /* SessionTableViewCell.swift in Sources */,
+				79FFCE531B60364F006FE789 /* SessionsViewController.swift in Sources */,
+				79FFCE511B60364F006FE789 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79FFCE5C1B60364F006FE789 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79FFCE671B60364F006FE789 /* SkiBumTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		79FFCE621B60364F006FE789 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 79FFCE4A1B60364E006FE789 /* SkiBum */;
+			targetProxy = 79FFCE611B60364F006FE789 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		79FFCE541B60364F006FE789 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79FFCE551B60364F006FE789 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		79FFCE591B60364F006FE789 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79FFCE5A1B60364F006FE789 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		79FFCE681B60364F006FE789 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		79FFCE691B60364F006FE789 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		79FFCE6B1B60364F006FE789 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0E71DA3B5F0D151B61AA29F /* Pods-SkiBum.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = SkiBum/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = Mavrik;
+				PROVISIONING_PROFILE = "ae11161d-7824-4509-8f36-724018c3396e";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		79FFCE6C1B60364F006FE789 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7620437E6F189E100CBBAAB /* Pods-SkiBum.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = SkiBum/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = Mavrik;
+				PROVISIONING_PROFILE = "ae11161d-7824-4509-8f36-724018c3396e";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		79FFCE6E1B60364F006FE789 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1055FE6CEA45BF364AB79C8 /* Pods-SkiBumTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SkiBumTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SkiBum.app/SkiBum";
+			};
+			name = Debug;
+		};
+		79FFCE6F1B60364F006FE789 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EBE5ED2CB4042F672D8F575 /* Pods-SkiBumTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SkiBumTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SkiBum.app/SkiBum";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		79FFCE461B60364E006FE789 /* Build configuration list for PBXProject "SkiBum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79FFCE681B60364F006FE789 /* Debug */,
+				79FFCE691B60364F006FE789 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79FFCE6A1B60364F006FE789 /* Build configuration list for PBXNativeTarget "SkiBum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79FFCE6B1B60364F006FE789 /* Debug */,
+				79FFCE6C1B60364F006FE789 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79FFCE6D1B60364F006FE789 /* Build configuration list for PBXNativeTarget "SkiBumTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79FFCE6E1B60364F006FE789 /* Debug */,
+				79FFCE6F1B60364F006FE789 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 79FFCE431B60364E006FE789 /* Project object */;
+}

@@ -1,0 +1,6 @@
+framework module RealmSwift {
+  umbrella header "Pods-SkiBum-RealmSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}

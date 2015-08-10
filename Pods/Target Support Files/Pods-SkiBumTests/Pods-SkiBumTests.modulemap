@@ -1,0 +1,6 @@
+framework module Pods_SkiBumTests {
+  umbrella header "Pods-SkiBumTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
