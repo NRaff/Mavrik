@@ -522,7 +522,7 @@
 				INFOPLIST_FILE = SkiBum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Mavrik;
-				PROVISIONING_PROFILE = "ae11161d-7824-4509-8f36-724018c3396e";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -538,7 +538,7 @@
 				INFOPLIST_FILE = SkiBum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Mavrik;
-				PROVISIONING_PROFILE = "ae11161d-7824-4509-8f36-724018c3396e";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

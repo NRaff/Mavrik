@@ -19,31 +19,16 @@ class NewSessionViewController: UIViewController {
     var locationInfo = LocationHelper()
     var isAddSession = true
     var currentSession: Session?
-    var newSpeed:CLLocationSpeed = 0
-    var maxSpeed:CLLocationSpeed?
-    var newAltitude: CLLocationDistance = 0
-    var peakAltitude: CLLocationDistance?
-    var startLocation: CLLocation?
-    var nextLocation: CLLocation?
-    var totalDistance: CLLocationDistance = 0
     
     var statsTimer: NSTimer?
     var sessionDuration: NSTimer?
     var aveVelocity: NSTimer?
     
-    var seconds: Int = 0
-    var minutes: Int = 0
-    var hours: Int = 0
-    var ventureTime: String = ""
     var metricConversionKPH = 3.6
     var metricConversionKM = 0.001
     var imperialConvMPH = 2.23694
     var imperialConvMi = 0.000621371
     var imperialConvFt = 3.28084
-    
-    var averageSpeedArray = [CLLocationSpeed]()
-    var sumSpeeds: CLLocationSpeed = 0
-    var averageSpeed: Double = 0
     
     var backImageID: Int = 0
     
@@ -61,35 +46,44 @@ class NewSessionViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        locationInfo.startLocation()
-        //if user is adding a session then display the add fields
+        locationInfo.startedLocation()
         
+        //if user is adding a session then display the add fields
         if isAddSession == true {
+            
+            //choose a random image to display as the background
             backImageID = Int(arc4random_uniform(8) + 1)
             backImage.image = UIImage(named: "detailsbg\(backImageID)")
+            
+            //hide the current session display objects
             back_btn.hidden = true
             sessionTime.hidden = true
             titleLabel.hidden = true
             end_btn.hidden = true
-            nameTrek_tf.attributedPlaceholder = NSAttributedString(string:"NAME YOUR TREK",
+            
+            //color the text field placeholder text
+            nameTrek_tf.attributedPlaceholder = NSAttributedString(string:"NAME YOUR SESSION",
                 attributes:[NSForegroundColorAttributeName: UIColor.lightTextColor()])
             
-            //Mixpanel.sharedInstanceWithToken("28c4af140f3b0963fca2c97bbbca2d84")
-//            let mixpanel: Mixpanel = Mixpanel.sharedInstance()
+            //track the event
             mixpanel.track("Add Session Started", properties: ["Event": "Opened Scene"])
             
         }
             
         //otherwise hide the editable fields and display the recorded topspeed and peak altitude
         else{
+            //hide and unhide things
             unhideNeeded()
             hideUnneeded()
             end_btn.hidden = true
+            
+            //pull data from the old session to be displayed in the session view objects
             titleLabel.text = currentSession!.sessionTitle
             sessionTime.text  = currentSession!.sessionTime
+            //select the correct image
             backImage.image = UIImage(named: "detailsbg\(currentSession!.imageID)")
-//            mixpanel.track("Viewing Old Session")
             
+            //if the current session units are set as imperial...
             if currentSession!.sessionMeasuredIn == false {
             topSpeed_lb.text = toString(currentSession!.topSpeed) + " mph"
             peakAltitude_lb.text = toString(currentSession!.peakAltitude) + " ft"
@@ -97,12 +91,15 @@ class NewSessionViewController: UIViewController {
             currentSpeed_lb.text = "\(currentSession!.averageSpeed) mph"
             }
                 
+            //if the current session units are set as metric...
             else {
                 topSpeed_lb.text = toString(currentSession!.topSpeed) + " kph"
                 peakAltitude_lb.text = toString(currentSession!.peakAltitude) + " m"
                 totalDistance_lb.text = toString(currentSession!.totalDistance) + " km"
                 currentSpeed_lb.text = "\(currentSession!.averageSpeed) kph"
             }
+            
+            //track this event
             mixpanel.track("Old Session", properties: ["Viewing?": "Opened Old Session"])
         }
 
@@ -148,21 +145,26 @@ class NewSessionViewController: UIViewController {
     
     
     @IBAction func backCancelButton(sender: AnyObject) {
+        //if the user is creating a new session then show the alert with options:
         if isAddSession == true {
         var cancelAlert = UIAlertController(title: "Cancel Session?", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
         
         cancelAlert.addAction(UIAlertAction(title: "Save & Exit", style: .Default, handler: { (action: UIAlertAction!) in
+            //if save and exit is chosen then save the data, track the event, then go back to AllSessions
             self.saveStuff()
             self.mixpanel.track("Back/Cancel Alert", properties: ["Options": "Save Session (Alert)"])
             self.performSegueWithIdentifier("segueToAlert", sender: nil)
         }))
         
         cancelAlert.addAction(UIAlertAction(title: "Keep Shredding!", style: .Default, handler: { (action: UIAlertAction!) in
+            //if 'keep shredding' is chosen then don't do anything and continue the session
             self.mixpanel.track("Back/Cancel Alert", properties: ["Options": "Continue Session (Alert)"])
             }))
-        
+        //show the alert
         presentViewController(cancelAlert, animated: true, completion: nil)
         }
+            
+        //if the user is viewing an old session then just segue back to the AllSessions view instead of pushing an alert
         else {
             self.performSegueWithIdentifier("segueToAlert", sender: nil)
             mixpanel.track("Old Session", properties: ["Viewing?": "No - Left Session"])
@@ -171,17 +173,26 @@ class NewSessionViewController: UIViewController {
     
     @IBAction func startNewSessionBtn(sender: AnyObject) {
         
+        //if the user has given the session a name then...
         if nameTrek_tf.text != "" {
+        //track
         mixpanel.track("Add Session Started", properties: ["Recording": "Check Button - OK"])
         hideUnneeded()
+            
+        //start the timer that asks for the average speed every 5 seconds
         aveVelocity = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "getAverageSpeed", userInfo: nil, repeats: true)
+            
+        //start the timer that adds updates the UI timer
         sessionDuration = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "tripDuration", userInfo: nil, repeats: true)
         titleLabel.text = nameTrek_tf.text
+            
+        //hide the keyboard
         nameTrek_tf.resignFirstResponder()
         unhideNeeded()
         
         }
-            
+        
+        //if the user forgot to give the session a nname then...
         else {
             //if the user didn't give the session a name, then give this error message
             let alert = UIAlertView()
@@ -195,8 +206,9 @@ class NewSessionViewController: UIViewController {
     }
     
     @IBAction func endButton(sender: AnyObject) {
+        //when 'end' is clicked save all data and segue to AllSessions
         saveStuff()
-        self.performSegueWithIdentifier("segueToAlert", sender: nil)
+        self.performSegueWithIdentifier("segueOnEnd", sender: nil)
         mixpanel.track("Back/Cancel Alert", properties: ["Options": "Saved with End"])
     }
     
@@ -207,8 +219,12 @@ class NewSessionViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         locationInfo.locationManager.stopUpdatingLocation()
-        startLocation = nil
-        nextLocation = nil
+        
+        //reset location stuff
+        locationInfo.startLocation = nil
+        locationInfo.nextLocation = nil
+        
+        //stop all timers so that stats stop updating
         statsTimer?.invalidate()
         sessionDuration?.invalidate()
         aveVelocity?.invalidate()
@@ -217,11 +233,15 @@ class NewSessionViewController: UIViewController {
 }
 
 extension NewSessionViewController: UITextFieldDelegate {
+    
+    //when the keyboard 'Go' button is tapped...
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        
+        //if the text field is not blank then...
         if nameTrek_tf.text != "" {
-            
             hideUnneeded()
+            //start all the timers to update stats
             aveVelocity = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "getAverageSpeed", userInfo: nil, repeats: true)
             sessionDuration = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "tripDuration", userInfo: nil, repeats: true)
             titleLabel.text = nameTrek_tf.text
@@ -242,6 +262,7 @@ extension NewSessionViewController: UITextFieldDelegate {
         return true
     }
     
+    //if a user taps outside the text field then hide the keyboard
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         nameTrek_tf.resignFirstResponder()
         
@@ -251,31 +272,41 @@ extension NewSessionViewController: UITextFieldDelegate {
 //MARK: - All Helper Functions
 
 extension NewSessionViewController {
+    
+    //use this function to save the data
     func saveStuff(){
+        
+        //if the user is creating a new session and it does have a name
         if isAddSession == true && cancel_btn.hidden == true {
+            //create a new 'Session'
             currentSession = Session()
-            
+            //save the general identification of the session
             currentSession?.imageID = backImageID
             currentSession?.sessionTitle = nameTrek_tf.text
             currentSession?.Date = NSDate()
             
+            //if the user sets units as imperial then...
             if Session.measureSwitch == false {
                 currentSession?.sessionMeasuredIn = false
-                currentSession?.topSpeed = Double(round(maxSpeed! * imperialConvMPH * 100)/100)
-                currentSession?.peakAltitude = Double(round(peakAltitude! * imperialConvFt * 100)/100)
-                currentSession?.totalDistance = Double(round(totalDistance * imperialConvMi * 100)/100)
-                currentSession?.averageSpeed = round(averageSpeed * imperialConvMPH * 100)/100
-            }
-            else {
-                currentSession?.sessionMeasuredIn = true
-                currentSession?.topSpeed = Double(round(maxSpeed! * metricConversionKPH * 100)/100)
-                currentSession?.peakAltitude = Double(round(peakAltitude! * 100)/100)
-                currentSession?.totalDistance = Double(round(totalDistance * metricConversionKM * 100)/100)
-                currentSession?.averageSpeed = round(averageSpeed * metricConversionKPH * 100)/100
+                currentSession?.topSpeed = locationInfo.getTopSpeed()
+                currentSession?.peakAltitude = locationInfo.getPeakAltitude()
+                currentSession?.totalDistance = locationInfo.getTotalDistance()
+                currentSession?.averageSpeed = locationInfo.getAverageSpeed()
             }
             
-            currentSession?.sessionTime = "TIME ADVENTURING: " + ventureTime
-            println(toString(totalDistance))
+            //if the user sets units as metric
+            else {
+                currentSession?.sessionMeasuredIn = true
+                currentSession?.topSpeed = locationInfo.getTopSpeed()
+                currentSession?.peakAltitude = locationInfo.getPeakAltitude()
+                currentSession?.totalDistance = locationInfo.getTotalDistance()
+                currentSession?.averageSpeed = locationInfo.getAverageSpeed()
+            }
+            
+            //set the sessionTime string to be the ending timer time
+            currentSession?.sessionTime = "TIME ADVENTURING: " + locationInfo.ventureTime
+            
+            //send it all to realm
             let realm = Realm()
             realm.write() {
                 realm.add(self.currentSession!)
@@ -283,226 +314,85 @@ extension NewSessionViewController {
         }
     }
     
+    
+    //this function updates current Altitude, top speed, peak altitude, and total distance
     func updateCurrentStats(){
+        //if the session is NOT an old session...
         if isAddSession == true {
+            //if units are imperial system...
             if Session.measureSwitch == false {
-                println(locationInfo.locationManager.location)
+                //if the CLLocation.Location is not nil
                 if locationInfo.locationManager.location != nil {
-                    if locationInfo.locationManager.location.altitude > 0 {
+                    if locationInfo.locationManager.location.altitude >= 0 {
                         currentAltitude_lb.text = toString(round(locationInfo.locationManager.location.altitude * imperialConvFt * 1000)/1000) + " ft"
                     }
                     else{
                         currentAltitude_lb.text = "0.0 ft"
                     }
+                    topSpeed_lb.text = "\(locationInfo.getTopSpeed()) mph"
+                    peakAltitude_lb.text = "\(locationInfo.getPeakAltitude()) ft"
+                    totalDistance_lb.text = "\(locationInfo.getTotalDistance()) mi"
                 }
                 else {
-                  currentAltitude_lb.text = "- . - ft"
+                  currentAltitude_lb.text = "- - - -"
                 }
             }
             else {
                 if locationInfo.locationManager.location != nil {
-                    if locationInfo.locationManager.location.altitude > 0 {
+                    if locationInfo.locationManager.location.altitude >= 0 {
                         currentAltitude_lb.text = toString(round(locationInfo.locationManager.location.altitude * 100)/100) + " m"
                     }
                     else{
                         currentAltitude_lb.text = "0.0 m"
                     }
+                    topSpeed_lb.text = "\(locationInfo.getTopSpeed()) kph"
+                    peakAltitude_lb.text = "\(locationInfo.getPeakAltitude()) m"
+                    totalDistance_lb.text = "\(locationInfo.getTotalDistance()) km"
                 }
                 else {
                    currentAltitude_lb.text = "- - - -"
                 }
             }
-        
-            getTopSpeed()
-            getPeakAltitude()
-            getTotalDistance()
         }
         else {
-            if currentSession!.sessionMeasuredIn == false {
-                currentAltitude_lb.text = toString(round(locationInfo.locationManager.location.altitude * imperialConvFt * 1000)/1000) + " ft"
+            if locationInfo.locationManager.location != nil {
+                if currentSession!.sessionMeasuredIn == false {
+                    currentAltitude_lb.text = toString(round(locationInfo.locationManager.location.altitude * imperialConvFt * 1000)/1000) + " ft"
+                }
+                else {
+                   currentAltitude_lb.text = toString(round(locationInfo.locationManager.location.altitude * 100)/100) + " m"
+                }
             }
             else {
-               currentAltitude_lb.text = toString(round(locationInfo.locationManager.location.altitude * 100)/100) + " m"
+                if currentSession!.sessionMeasuredIn == false {
+                    currentAltitude_lb.text = "- - ft"
+                }
+                else {
+                    currentAltitude_lb.text = "- - m"
+                }
+ 
             }
         }
     }
     
-    func getTopSpeed(){
-        if locationInfo.locationManager.location != nil {
-            if locationInfo.locationManager.location.speed >= 0 {
-                newSpeed = locationInfo.locationManager.location.speed
-                if maxSpeed != nil {
-                    //find the maxSpeed
-                    if newSpeed > maxSpeed {
-                        maxSpeed = newSpeed
-                        if Session.measureSwitch == false {
-                            topSpeed_lb.text = toString(round(maxSpeed! * imperialConvMPH * 100)/100) + " mph"
-                        }
-                        else{
-                            topSpeed_lb.text = toString(round(maxSpeed! * metricConversionKPH * 100)/100) + " kph"
-                        }
-                    }
-                }
-                else {
-                    //just display the most recently recorded speed
-                    maxSpeed = newSpeed
-                    if Session.measureSwitch == false {
-                        topSpeed_lb.text = toString(round(newSpeed * imperialConvMPH * 100)/100) + " mph"
-                    }
-                    else {
-                        topSpeed_lb.text = toString(round(newSpeed * metricConversionKPH * 100)/100) + " kph"
-                    }
-                }
-            }
-            else {
-                newSpeed = 0.0
-                    if maxSpeed == nil {
-                        maxSpeed = 0.0
-                    }
-                topSpeed_lb.text = "- - - -"
-            }
-        }
-    }
-    
-    func getPeakAltitude(){
-        if locationInfo.locationManager.location != nil {
-            if locationInfo.locationManager.location.altitude > 0 {
-                newAltitude = locationInfo.locationManager.location.altitude
-                if peakAltitude != nil {
-                    if newAltitude > peakAltitude {
-                        peakAltitude = newAltitude
-                        if Session.measureSwitch == false {
-                            peakAltitude_lb.text = toString(round(peakAltitude! * imperialConvFt * 100)/100) + " ft"
-                        }
-                        else {
-                            peakAltitude_lb.text = toString(round(peakAltitude! * 100)/100) + " m"
-                        }
-                    }
-                }
-                else {
-                    peakAltitude = newAltitude
-                    if Session.measureSwitch == false {
-                        peakAltitude_lb.text = toString(round(newAltitude * imperialConvFt * 100)/100) + " ft"
-                    }
-                    else {
-                        peakAltitude_lb.text = toString(round(newAltitude * 100)/100) + " m"
-                    }
-                }
-            }
-        }
-        else {
-            peakAltitude_lb.text = "- - - -"
-        }
-    }
-    
-    func getTotalDistance(){
-        if locationInfo.locationManager.location != nil {
-            if startLocation == nil {
-                startLocation = locationInfo.locationManager.location
-                if Session.measureSwitch == false {
-                    totalDistance_lb.text = toString(round(totalDistance * imperialConvMi * 1000)/1000) + " mi"
-                }
-                else {
-                    totalDistance_lb.text = toString(round(totalDistance * metricConversionKM * 1000)/1000) + " km"
-                }
-            }
-            else {
-                nextLocation = locationInfo.locationManager.location
-                totalDistance += nextLocation!.distanceFromLocation(startLocation)
-                startLocation = nextLocation
-                if Session.measureSwitch == false {
-                    totalDistance_lb.text = toString(round(totalDistance * imperialConvMi * 1000)/1000) + " mi"
-                }
-                else {
-                    totalDistance_lb.text = toString(round(totalDistance * metricConversionKM * 1000)/1000) + " km"
-                }
-            }
-        }
-        else {
-                totalDistance_lb.text = "- - - -"
-        }
-    }
     
     func getAverageSpeed(){
-        if locationInfo.locationManager.location != nil {
-            if locationInfo.locationManager.location.speed > 0 {
-                averageSpeedArray.append(locationInfo.locationManager.location.speed)
-            }
-            else {
-                averageSpeedArray.append(0.0)
-            }
-            
-            if averageSpeedArray.count < 2 {
-                averageSpeed = Double(averageSpeedArray[0])
-                sumSpeeds = averageSpeedArray[0]
-            }
-            else {
-                sumSpeeds += averageSpeedArray.last!
-                averageSpeed = Double(sumSpeeds)/Double(averageSpeedArray.count)
-            }
-            if Session.measureSwitch == false {
-                currentSpeed_lb.text = "\(round(averageSpeed * imperialConvMPH * 100)/100) mph"
-            }
-            else {
-                currentSpeed_lb.text = "\(round(averageSpeed * metricConversionKPH * 100)/100) kph"
-            }
+        if Session.measureSwitch == false {
+        currentSpeed_lb.text = "\(locationInfo.getAverageSpeed()) mph"
         }
+        else {
+        currentSpeed_lb.text = "\(locationInfo.getAverageSpeed()) kph"
+        }
+    }
+    
+    func getAltitudeSkied(){
+        //formula to find total ft skiied rather than sitting on the lift
+        //use if statements to determine if user is going downhill
+            //if user is going downhill then calculate how many feet downhill
+            //keep updating the total like total distance
     }
     
     func tripDuration(){
-        seconds++
-        if seconds > 59 {
-            seconds = 0
-            minutes++
-        }
-        if minutes > 59 {
-            minutes = 0
-            hours++
-        }
-        adventureTime()
+        sessionTime.text = "Adventure Time: \(locationInfo.tripDuration())"
     }
-    
-    func adventureTime() {
-        if hours < 10 && minutes < 10 && seconds < 10 {
-            ventureTime = "0\(hours).0\(minutes).0\(seconds)"
-        }
-        else {
-            if hours < 10 && minutes < 10 && seconds > 9 {
-                ventureTime = "0\(hours).0\(minutes).\(seconds)"
-            }
-            else {
-                if hours < 10 && minutes > 9 && seconds < 10 {
-                    ventureTime = "0\(hours).\(minutes).0\(seconds)"
-                }
-                else {
-                    if hours < 10 && minutes > 9 && seconds > 9 {
-                        ventureTime = "0\(hours).\(minutes).\(seconds)"
-                    }
-                    else {
-                        if hours > 9 && minutes < 10 && seconds < 10 {
-                            ventureTime = "\(hours).0\(minutes).0\(seconds)"
-                        }
-                        else {
-                            if hours > 9 && minutes < 10 && seconds > 9 {
-                                ventureTime = "\(hours).0\(minutes).\(seconds)"
-                            }
-                            else {
-                                if hours > 9 && minutes > 9 && seconds < 10 {
-                                    ventureTime = "\(hours).\(minutes).0\(seconds)"
-                                }
-                                else {
-                                    if hours > 9 && minutes > 9 && seconds > 9 {
-                                        ventureTime = "\(hours).\(minutes).\(seconds)"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        sessionTime.text = "ACTIVE SESSION: " + ventureTime
-    }
-
 }
